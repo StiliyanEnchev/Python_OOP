@@ -1,5 +1,4 @@
-from typing import List
-from project.pokemon import Pokemon
+from first_steps_exer.project.pokemon import Pokemon
 
 
 class Trainer:
