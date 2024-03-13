@@ -1,0 +1,10 @@
+•	rent_dvd(customer_id: int, dvd_id: int)
+o	If the customer has already rented that DVD return
+ "{customer_name} has already rented {dvd_name}"
+o	If the DVD is rented by someone el
+se, return "DVD is already rented"
+o	If the customer is not allowed to rent the DVD, return "{customer_name} should be at least {dvd_age_restriction} to rent this movie"
+o	Otherwise, the rent is successful
+ (the DVD is rented and added to the customer's DVDs). Return "{customer_name} has successfully rented {dvd_name}"
+•	return_dvd(customer_id, dvd_id) - if the DVD is in the customer, he/she should return it and the method should return the message "{customer_name} has successfully returned {dvd_name}". Otherwise, return "{customer_name} does not have that DVD"
+•	__repr__() - return the string representation of each customer and each DVD on separate lines
