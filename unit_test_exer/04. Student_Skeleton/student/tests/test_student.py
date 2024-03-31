@@ -53,6 +53,7 @@ class TestStudent(TestCase):
     def test_leave_course_removes_correctly_the_name(self):
         result = self.student2.leave_course('Math')
         self.assertEqual("Course has been removed", result)
+        self.assertEqual({}, self.student2.courses)
 
     def test_leave_course_raises_exception_when_no_such_course(self):
 
