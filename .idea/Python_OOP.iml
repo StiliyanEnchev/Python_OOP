@@ -4,6 +4,7 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/classes_and_objects_exer/guild_system – Копие" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/ingeritance_lab/foods" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/exam_preparation/summit_ville_challenge/01-Structure-Skeleton" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
     </content>
     <orderEntry type="inheritedJdk" />
