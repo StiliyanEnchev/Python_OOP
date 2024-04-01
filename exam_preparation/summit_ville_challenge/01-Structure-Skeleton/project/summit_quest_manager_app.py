@@ -1,5 +1,4 @@
 from typing import List
-
 from project.climbers.arctic_climber import ArcticClimber
 from project.climbers.summit_climber import SummitClimber
 from project.peaks.arctic_peak import ArcticPeak
@@ -12,10 +11,12 @@ class SummitQuestManagerApp:
         self.peaks: List = []
 
     VALID_CLIMBERS = {"SummitClimber": SummitClimber,
-                      "ArcticClimber": ArcticClimber}
+                      "ArcticClimber": ArcticClimber,
+                      }
 
     VALID_PEAKS = {"ArcticPeak": ArcticPeak,
-                   "SummitPeak": SummitPeak}
+                   "SummitPeak": SummitPeak,
+                   }
 
     def register_climber(self, climber_type, climber_name):
 
@@ -25,7 +26,7 @@ class SummitQuestManagerApp:
             return f"{climber_type} doesn't exist in our register."
 
         try:
-            climber = next(filter(lambda c: c == climber_name, self.climbers))
+            next(filter(lambda c: c.name == climber_name, self.climbers))
             return f"{climber_name} has been already registered."
         except StopIteration:
             self.climbers.append(climber)
@@ -50,7 +51,8 @@ class SummitQuestManagerApp:
 
         climber.is_prepared = False
         return (f"{climber_name} is not prepared to climb {peak_name}. "
-                f"Missing gear: {', '.join(item for item in sorted(peak.get_recommended_gear()) if item not in gear)}.")
+                f"Missing gear: "
+                f"{', '.join(item for item in sorted(peak.get_recommended_gear()) if item not in gear)}.")
 
     def perform_climbing(self, climber_name: str, peak_name: str):
 
@@ -64,14 +66,16 @@ class SummitQuestManagerApp:
         except StopIteration:
             return f"Peak {peak_name} is not part of the wish list."
 
-        if climber.is_prepared and climber.can_climb:
-            return f"{climber_name} conquered {peak_name} whose difficulty level is {peak.calculate_difficulty_level()}."
-
         if not climber.is_prepared:
             return f"{climber_name} will need to be better prepared next time."
 
-        climber.rest()
-        return f"{climber_name} needs more strength to climb {peak_name} and is therefore taking some rest."
+        if not climber.can_climb():
+            climber.rest()
+            return f"{climber_name} needs more strength to climb {peak_name} and is therefore taking some rest."
+
+        climber.climb(peak)
+        return f"{climber_name} conquered {peak_name} whose difficulty level is {peak.difficulty_level}."
+
 
     def get_statistics(self) -> str:
         climbers_that_can_climb = filter(lambda c: len(c.conquered_peaks) > 0, self.climbers)
@@ -82,3 +86,4 @@ class SummitQuestManagerApp:
         return f"Total climbed peaks: {total_peaks_climbed}\n" + \
                 "**Climber's statistics:**\n" + \
                 "\n".join(str(c) for c in climbers)
+
