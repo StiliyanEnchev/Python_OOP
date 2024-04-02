@@ -15,9 +15,9 @@ class ArcticClimber(BaseClimber):
     def climb(self, peak: BasePeak):
 
         if peak.difficulty_level == 'Extreme':
-            self.strength -= float(20 * 2)
+            self.strength -= 20 * 2
         else:
-            self.strength -= float(20 * 1.5)
+            self.strength -= 20 * 1.5
 
         self.conquered_peaks.append(peak.name)
 

@@ -3,12 +3,14 @@ from project.climbers.arctic_climber import ArcticClimber
 from project.climbers.summit_climber import SummitClimber
 from project.peaks.arctic_peak import ArcticPeak
 from project.peaks.summit_peak import SummitPeak
+from project.peaks.base_peak import BasePeak
+from project.climbers.base_climber import BaseClimber
 
 
 class SummitQuestManagerApp:
     def __init__(self):
-        self.climbers: List = []
-        self.peaks: List = []
+        self.climbers: List[BaseClimber] = []
+        self.peaks: List[BasePeak] = []
 
     VALID_CLIMBERS = {"SummitClimber": SummitClimber,
                       "ArcticClimber": ArcticClimber,

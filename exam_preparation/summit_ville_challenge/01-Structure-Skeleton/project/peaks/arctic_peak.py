@@ -1,9 +1,7 @@
-from abc import ABC
-
 from project.peaks.base_peak import BasePeak
 
 
-class ArcticPeak(BasePeak, ABC):
+class ArcticPeak(BasePeak):
 
     def get_recommended_gear(self):
         return ["Ice axe", "Crampons", "Insulated clothing", "Helmet"]
